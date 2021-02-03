@@ -1,0 +1,21 @@
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.favorites-container {
+    padding-left: 0%;
+}
+
+.reviews-container {
+  
+    
+    /* padding-left: 20%;
+    padding-right: 10%; */
+}
+
+.stars-review-card {
+    padding-left: 38%;
+    padding-bottom: 5%;
+}

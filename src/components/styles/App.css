@@ -1,0 +1,51 @@
+html { 
+  background: url('../festie/homepage.JPG') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.App {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+img {
+  height: 375px;
+  width: 300px;
+}
+
+.festival-container {  
+    /* display: flex;
+    justify-content: space-between; */
+}
+
+div.festival-card {
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  /* margin: 0 auto; */
+  padding: 25px;
+  display: inline-block;
+
+}
+
+div.home-page-card {
+  /* background-image: url('./homepage.JPG'); */
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+
+.festie-header {
+  padding-top: 13%;
+  padding-bottom: 7%;
+}
+
+.festie-description {
+  background-color: black;
+  opacity: 75%;
+  display: inline-block;
+
+}

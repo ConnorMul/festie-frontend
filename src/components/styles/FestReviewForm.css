@@ -1,0 +1,31 @@
+.fest-review-form-container {
+    background: url('../festie/formpage.JPG') no-repeat center center fixed;
+    min-height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 3%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.fest-review-form, .review-title {
+    color: white;
+    
+}
+
+.comment-section {
+    padding-left: 4%;
+}
+
+.form-section {
+    padding-right: 4%;
+}
+
+.stars {
+    padding-top: 3%;
+    padding-left: 35%;
+    display: inline-block;
+}
