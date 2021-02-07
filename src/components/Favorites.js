@@ -3,29 +3,23 @@ import ProfileReviewCard from './ProfileReviewCard'
 import ProfileFavoriteCard from './ProfileFavoriteCard'
 import './styles/Favorites.css'
 
-function Favorites({ currentUser, favorites, reviews }) {
+function Favorites({ currentUser, favorites, reviews, handleDeleteFavorite }) {
     
     const favs = favorites.map(favorite => {
-        return <ProfileFavoriteCard key={favorite.id} favorite={favorite} />
-    })
-
-    const revs = reviews.map(review => {
-        return <ProfileReviewCard key={review.id} review={review} />
+        return <ProfileFavoriteCard key={favorite.id} favorite={favorite} handleDeleteFavorite={handleDeleteFavorite} />
     })
     
     
     return (
-        <div className="profile-container">
-            <div className="favorites-container">
-                <h1>Fests you've Faved!</h1>
-                {favs}
+        <>
+        <h1 className="faved-title">Fests you've Faved!</h1>
+            <div className="profile-container">
+                <div className="favorites-container">
+                    {favs}
+                </div>
             </div>
-
-            {/* <div className="reviews-container">
-                <h1>Fests you've Reviewed</h1>
-                {revs}
-            </div> */}
-        </div>
+        </>
+       
     )
 }
 

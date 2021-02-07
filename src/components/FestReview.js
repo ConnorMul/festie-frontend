@@ -14,7 +14,7 @@ function FestReview({ favorites, setFavorites, currentUser }) {
     return (
         <div className="festival-container">
             <h1 className="fest-container-title">You're in FestHeaven!</h1>
-            <h1 className="fest-container-title">Here you can check out a fest and what your festies are saying..</h1>
+            <h1 className="fest-container-title">Here you can check out a fest and what other festies are saying..</h1>
             <h1 className="fest-container-title">You can also leave your own review for a fest! Click on a lineup to try it out!</h1>
             {mappedFestivals}
         </div>

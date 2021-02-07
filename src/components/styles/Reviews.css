@@ -1,0 +1,34 @@
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    
+}
+
+.reviews-container {
+    padding-left: 1.5%;
+}
+
+.stars-review-card {
+    padding-left: 38%;
+    padding-bottom: 5%;
+}
+
+.fest-details {
+    background-color: black;
+    /* opacity: 85%; */
+}
+
+#reviewed-title {
+    color: white
+}
+
+.review-profile-container {
+    background: url('../festie/tame.jpg') no-repeat center center fixed;
+   min-height: 100vh;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   padding-top: 3%;
+}

@@ -1,15 +1,16 @@
-
-
 .navbar {
     background-color: black;
     /* position: fixed; */
     display: flex;
     justify-content: space-between;
     opacity: 95%;
-    padding-bottom: 3%;
+    padding-bottom: 1%;
     font-size: 30px;
     align-items: center;
     color: white;
+    padding-left: 16%;
+    padding-right: 13%;
+   
     transition: all .7s ease-in;
 }
 
@@ -19,6 +20,7 @@
 }
 
 a.navbar-links {
+    padding-top: 1.5%;
     text-decoration: none;
     color: white;
 }

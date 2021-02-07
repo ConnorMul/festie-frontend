@@ -1,6 +1,6 @@
 .comment-card {
-    background-color: white;
-    color: black;
+    background: rgba(0,0,0,.7);
+    color: white;
     /* text-align: center; */
     
 
@@ -18,3 +18,16 @@
     display: inline-block;
     
 }
+
+.fest-review-form {
+    top: 100%; 
+    /* left: 50%;  */
+    /* width: 400px; */
+   
+    /* transform: translate(-50%, -50%); */
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+

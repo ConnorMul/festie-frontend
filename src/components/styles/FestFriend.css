@@ -1,0 +1,42 @@
+.fest-friend-container {
+   padding: 5px;
+   background: url('../festie/festiefeedalt.jpg') no-repeat center center fixed;
+   min-height: 100vh;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+.festiefeed-title {
+    color: white;
+}
+
+.add-to-feed-btn {
+    font-size: 90%;
+    font-weight: 600;
+    border: none;
+    outline: none;
+}
+
+label {
+    color: white;
+}
+
+.festiefeed-box {
+    position: relative;
+    top: 100%; 
+    left: 50%; 
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.festiefeed-box-container {
+    padding-top: 15%;
+
+}

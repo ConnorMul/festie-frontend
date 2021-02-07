@@ -1,0 +1,14 @@
+.trending-container {
+    background: url("../festie/trending.jpeg") no-repeat center center fixed;
+    min-height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 2%;
+}
+
+.trending-title {
+    color: white;
+}
+

@@ -35,7 +35,7 @@ function FestivalCard({ favorite, favorites, setFavorites, currentUser, festival
         : alert("Log in to add this to your favorites!")
     }
 
-    console.log(festival.favorites)
+    
     
     return (
         <div className="festival-card">
@@ -43,7 +43,7 @@ function FestivalCard({ favorite, favorites, setFavorites, currentUser, festival
             <h3>{name}</h3>
             <p>{city}</p>
             <p>{dates[0]} - {dates[1]}</p>
-            {festival.favorites.length === 0 && !isFaved ? <button className="fav-btn" onClick={handleAddToFavorites}>❣️</button> : "You already faved this fest!"}
+            {festival.favorites.length === 0 && !isFaved ? <button className="fav-btn" onClick={handleAddToFavorites}>❣️</button> : "You faved this fest!"}
         </div>
         
     )

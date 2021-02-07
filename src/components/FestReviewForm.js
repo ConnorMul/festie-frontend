@@ -4,13 +4,15 @@ import { useParams } from 'react-router-dom'
 import FestivalReviewCard from './FestivalReviewCard'
 import './styles/FestReviewForm.css'
 
-function FestReviewForm({ reviews, setReviews, handleDelete, currentUser }) {
+function FestReviewForm({ setEditFormData, handleEditButtonClick, editFormData, reviews, setReviews, handleDelete, currentUser }) {
     const [festival, setFestival] = useState()
+    const [stars, setStars] = useState(null)
     const [formData, setFormData] = useState({
         content: "",
         stars: 0
     })
-
+    const [reviewsLength, setReviewsLength] = useState(0)
+    console.log(reviewsLength)
     const params = useParams()
 
     useEffect(() => {
@@ -18,6 +20,7 @@ function FestReviewForm({ reviews, setReviews, handleDelete, currentUser }) {
         .then(r => r.json())
         .then(festivalObj => {
             setFestival(festivalObj)
+            setReviewsLength(festivalObj.reviews.length)
             })
         }, [params.id])
 
@@ -44,12 +47,38 @@ function FestReviewForm({ reviews, setReviews, handleDelete, currentUser }) {
         setFormData({
             content: "",
         stars: 0
-        })
+        }),
+        setReviewsLength(reviewsLength + 1)
         )
         : alert("You must be logged in to review a festival!")
     }
 
+    function handleEditSubmit(evt, id) {
+        evt.preventDefault()
+        
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/reviews/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editFormData)
+        })
+        .then(r => r.json())
+        .then(editedComment => {
+            console.log(editedComment)
+            const filteredReviews = reviews.filter(review => review.id !== id)
+            setStars(editedComment.stars)
+            setReviews([...filteredReviews, editedComment])
+            setEditFormData(null)
+        })
+        
+    }
+    
+
     const ratingChanged = (newRating) => {
+        editFormData ? 
+        setEditFormData({...editFormData, stars: newRating})
+        :
         setFormData({...formData, stars: newRating})
     };
 
@@ -60,15 +89,27 @@ function FestReviewForm({ reviews, setReviews, handleDelete, currentUser }) {
                 <h1>Here's what others are saying about</h1>
                 <h2>{festival ? festival.name : null}</h2>
                 
-                {reviews && festival ? reviews.map(review => review.festival_id === festival.id ? <FestivalReviewCard key={review.id} review={review} currentUser={currentUser} handleDelete={handleDelete} festival={festival}/> : null) : null}
+                {reviews && festival ? reviews.map(review => review.festival_id === festival.id ? 
+                <FestivalReviewCard 
+                    key={review.id} 
+                    review={review} 
+                    currentUser={currentUser} 
+                    handleEditButtonClick={handleEditButtonClick} 
+                    handleDelete={handleDelete} 
+                    festival={festival} 
+                    stars={stars}
+                    setStars={setStars}
+                />
+                : null) : null}
+                {reviewsLength === 0 ? "No Reviews Yet! Leave one now!" : null}
             </div>
             
             <div className="form-section">
                 <h1 className="review-title">Tell us about {festival ? festival.name : null}</h1>
                 <h2 className="review-title">What did ya think? Would ya go again?</h2>
                 <h2 className="review-title">Was {festival ? festival.name : null} not for you? Let us know!</h2>
-                
-                <form className="fest-review-form" onSubmit={handleSubmit}>
+                <img src={festival ? festival.image : null} alt={festival ? festival.name : null} />
+                <form className="fest-review-form" onSubmit={editFormData ? (evt) => handleEditSubmit(evt, editFormData.id) : handleSubmit}>
                     <label>Your Review</label>
                     <br />
                     <textarea 
@@ -76,8 +117,13 @@ function FestReviewForm({ reviews, setReviews, handleDelete, currentUser }) {
                         cols="45"
                         required
                         placeholder="This festival was the best time I have ever had, I can't wait to go back next year!"
-                        value={formData.content} 
-                        onChange={(e) => setFormData({...formData, content: e.target.value})} 
+                        value={editFormData ? editFormData.content : formData.content} 
+                        onChange={
+                            editFormData ?
+                            (e) => setEditFormData({...editFormData, content: e.target.value}) 
+                            :
+                            (e) => setFormData({...formData, content: e.target.value})
+                        } 
                     />
                     <br />
                     <label>How many stars would you rate {festival ? festival.name : null}?</label>
@@ -85,7 +131,7 @@ function FestReviewForm({ reviews, setReviews, handleDelete, currentUser }) {
                     <ReactStars
                         classNames="stars"
                         count={5}
-                        value={formData.stars}
+                        value={editFormData ? editFormData.stars : formData.stars}
                         onChange={ratingChanged}
                         size={24}
                         activeColor="#ffd700"

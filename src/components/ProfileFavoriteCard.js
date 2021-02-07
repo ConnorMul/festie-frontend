@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function ProfileFavoriteCard({ favorite }) {
+function ProfileFavoriteCard({ favorite, handleDeleteFavorite }) {
     const [festival, setFestival] = useState({})
 
     useEffect(() => {
@@ -9,11 +9,13 @@ function ProfileFavoriteCard({ favorite }) {
         .then(setFestival)
     }, [favorite.festival_id])
     
-    console.log(festival.image)
     return (
         <div className="festival-card">
+
             <img src={festival.image} alt={festival.name}/>
             <h3>{festival.name}</h3>
+            <button onClick={() => handleDeleteFavorite(favorite)}>💔💔💔</button>
+
         </div>
     )
 }

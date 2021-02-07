@@ -26,6 +26,13 @@
 
 .stars {
     padding-top: 3%;
-    padding-left: 35%;
+    padding-left: 37%;
     display: inline-block;
+    border: none;
+    outline:none;
+}
+
+.react-stars-wrapper-04465423467562937 {
+    border: none;
+    outline: none;
 }

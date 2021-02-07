@@ -1,21 +1,28 @@
 .profile-container {
     display: flex;
     justify-content: space-between;
+    
     color: white;
 }
 
 .favorites-container {
-    padding-left: 0%;
+    align-items: center;
+    color: white;
+    padding-left: 1.5%;
 }
 
-.reviews-container {
-  
-    
-    /* padding-left: 20%;
-    padding-right: 10%; */
+.faved-title {
+    color: white;
 }
 
-.stars-review-card {
-    padding-left: 38%;
-    padding-bottom: 5%;
+button {
+    font-size: 20px;
+    border: none;
+    background: none;
+    color: white;
+}
+
+button:hover {
+    background-color: lightpink;
+    transition: 2s;
 }
