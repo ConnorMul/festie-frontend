@@ -7,6 +7,7 @@ function Profile({ currentUser, handleEditProfileClick }) {
 
     return (
         <div className="edit-profile-container">
+            <div className="profile-details">
             <h1>Hey Bestie!</h1>
             <h1>Here's your profile info we have on file..</h1>
             <h4>Username</h4>
@@ -14,6 +15,7 @@ function Profile({ currentUser, handleEditProfileClick }) {
             <h4>Email</h4>
             <p>{currentUser ? currentUser.email : null}</p>
             <button className="edit-profile-btn" onClick={() => handleEditProfileClick(currentUser)}>Change some details</button>
+            </div>
         </div>
     )
 }

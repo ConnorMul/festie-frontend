@@ -8,5 +8,18 @@
     padding-top: 3%;
     
     color: white;
+    
 
 }
+
+.festie-101-container h1, .festie-101-container h2 {
+    color: white;
+    --fill-color: #e279f7;
+    font: 100 Raleway, sans-serif;
+      text-decoration: none;
+      text-transform: uppercase;
+      -webkit-text-stroke: 2px var(--fill-color);
+      background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
+      /* color: transparent; */
+      margin: 0 auto;
+      padding-bottom: 10px;}

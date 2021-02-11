@@ -4,8 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 
 
-function FestivalCard({ favorite, favorites, setFavorites, currentUser, festival }) {
-    const [isFaved, setIsFaved] = useState(false)
+function FestivalCard({ favorite, favorites, setFavorites, currentUser, festival, favoritesLength, setFavoritesLength }) {
     const history = useHistory()
     const { id, name, city, image, dates } = festival
 
@@ -14,7 +13,7 @@ function FestivalCard({ favorite, favorites, setFavorites, currentUser, festival
     }
 
     function handleAddToFavorites() {
-        currentUser ? 
+
         fetch(`${process.env.REACT_APP_API_BASE_URL}/favorites/new`, {
             method: "POST",
             headers: {
@@ -29,10 +28,8 @@ function FestivalCard({ favorite, favorites, setFavorites, currentUser, festival
         .then(r => r.json())
         .then(favObj => {
             setFavorites([...favorites, favObj])
-            setIsFaved(!isFaved)
-            console.log(favObj)
+            setFavoritesLength(1)
         })
-        : alert("Log in to add this to your favorites!")
     }
 
     
@@ -40,10 +37,10 @@ function FestivalCard({ favorite, favorites, setFavorites, currentUser, festival
     return (
         <div className="festival-card">
             <img src={image} alt={name} onClick={handleClick}/>
-            <h3>{name}</h3>
+            <h3 onClick={handleClick}>{name}</h3>
             <p>{city}</p>
             <p>{dates[0]} - {dates[1]}</p>
-            {festival.favorites.length === 0 && !isFaved ? <button className="fav-btn" onClick={handleAddToFavorites}>❣️</button> : "You faved this fest!"}
+            {currentUser ? !favorite ? <button className="fav-btn" onClick={handleAddToFavorites}>❣️</button> : "You faved this fest!" : null}
         </div>
         
     )

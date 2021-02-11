@@ -14,7 +14,7 @@ function Signup() {
             <h2>Signup</h2>
             <form  className="signup-form">
                 <div className="user-box">
-                    <input 
+                    <input
                         type="text"
                         value={signupData.username}
                         onChange={(e) => setSignupData({...signupData, username: e.target.value})}
@@ -23,7 +23,7 @@ function Signup() {
                     <label>Username</label>
                 </div>
                 <div className="user-box">
-                    <input 
+                    <input
                         type="password"
                         value={signupData.password}
                         onChange={(e) => setSignupData({...signupData, password: e.target.value})}
@@ -32,7 +32,7 @@ function Signup() {
                     <label>Password</label>
                 </div>
                 <div className="user-box">
-                    <input 
+                    <input
                         type="text"
                         value={signupData.email}
                         onChange={(e) => setSignupData({...signupData, email: e.target.value})}
@@ -40,13 +40,13 @@ function Signup() {
                     />
                     <label>email</label>
                 </div>
-                <a href="/">
+                <div className="btn-animd">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                        Submit
-                </a>
+                       <button className="signup-submit-btn">Submit</button>
+                </div>
             </form>
         </div>
         </div>

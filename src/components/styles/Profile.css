@@ -11,6 +11,13 @@
    padding-top: 3%;
 }
 
+.profile-details {
+    background-color: rgba(0, 0, 0, 0.589);
+    margin-top: 75px;
+    padding: 30px;
+    display: inline-block;
+}
+
 .edit-profile-form-container {
     color: white;
     background: url('../festie/edit-profile.jpg') no-repeat center center fixed;

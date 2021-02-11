@@ -10,13 +10,25 @@
 
 .festiefeed-title {
     color: white;
+    --fill-color: #e279f7;
+    font: 100 Raleway, sans-serif;
+      text-decoration:none;
+      text-transform: uppercase;
+      -webkit-text-stroke: 1.5px var(--fill-color);
+      background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
 }
 
 .add-to-feed-btn {
     font-size: 90%;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
     border: none;
     outline: none;
+}
+
+.add-to-feed-btn:hover {
+    background-color: #e279f7;
+    transition: 2s;
 }
 
 label {

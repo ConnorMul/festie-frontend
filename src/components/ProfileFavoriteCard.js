@@ -14,7 +14,7 @@ function ProfileFavoriteCard({ favorite, handleDeleteFavorite }) {
 
             <img src={festival.image} alt={festival.name}/>
             <h3>{festival.name}</h3>
-            <button onClick={() => handleDeleteFavorite(favorite)}>💔💔💔</button>
+            <button onClick={() => handleDeleteFavorite(favorite)}>Unfav 💔💔💔</button>
 
         </div>
     )

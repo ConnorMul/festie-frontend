@@ -18,39 +18,63 @@ img {
 }
 
 .festival-container {  
-    /* display: flex;
-    justify-content: space-between; */
+
 }
 
 div.festival-card {
-  background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
+  margin: 5px;
   /* margin: 0 auto; */
   padding: 25px;
   display: inline-block;
+}
 
+.festival-card h3:hover, .festival-card img:hover {
+  cursor: pointer;
 }
 
 div.home-page-card {
-  /* background-image: url('./homepage.JPG'); */
   height: 100%;
   width: 100%;
   color: white;
+  background-color: rgba(0, 0, 0, 0.678);
+  margin: 0;
+  padding-top: 1%;
+  padding-bottom: 12%;
+}
+
+.fav-btn {
+  border: none;
+  outline: none;
 }
 
 .festie-header {
-  padding-top: 13%;
-  padding-bottom: 7%;
+  margin-top: 13%;
+  padding-bottom: 3%;
+  --fill-color: #e279f7;
+  font: 1000 Raleway, sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1.5px var(--fill-color);
+    background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
+    /* background-color: rgba(0, 0, 0, 0.753); */
 }
 
 .festie-description {
-  background-color: black;
-  opacity: 75%;
+  --fill-color: #e279f7;
+  font: 1000 Raleway, sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1.5px var(--fill-color);
+    background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
   display: inline-block;
-  padding: 10px;
+  /* font-size: 100px; */
+  padding: 5px;
+  /* background-color: rgba(0, 0, 0, 0.753); */
 }
 
 .festie-description p {
-  font-size: large;
+  font-size: larger;
   font-weight: 600;
 }

@@ -15,7 +15,7 @@ function FestivalReviewCard({ festival, handleDelete, handleEditButtonClick, cur
             {review.stars === 4 ? "🌟🌟🌟🌟" : null}
             {review.stars === 5 ? "🌟🌟🌟🌟🌟" : null}
             <br />
-            {currentUser ? currentUser.id === review.user_id ? <div className="btn-container"><button className="edit-btn" onClick={() => handleEditButtonClick(review)}>📝📝📝</button><br /><button className="delete-btn" onClick={() => handleDelete(review)}>💣💣💣</button></div> : null : null}
+            {currentUser ? currentUser.id === review.user_id ? <div className="btn-container"><button className="edit-btn" onClick={() => handleEditButtonClick(review)}>Edit 📝📝📝</button><br /><button className="delete-btn" onClick={() => handleDelete(review)}>Delete 💣💣💣</button></div> : null : null}
 
 
         </div>

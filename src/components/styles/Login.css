@@ -16,7 +16,16 @@ html {
     -o-background-size: cover;
     background-size: cover;
   }
-  
+
+  .login-submit-btn {
+      padding: 10px 20px;
+  }
+
+  .login-submit-btn:hover {
+      background-color: transparent;
+      cursor: pointer;
+  }
+
   .login-box {
     position: absolute;
     top: 50%;
@@ -71,10 +80,10 @@ html {
     font-size: 12px;
   }
   
-  .login-box form a {
+  .login-box form .btn-animd {
     position: relative;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 0;
     color: #03e9f4;
     font-size: 16px;
     text-decoration: none;
@@ -85,7 +94,7 @@ html {
     letter-spacing: 4px
   }
   
-  .login-box a:hover {
+  .login-box .btn-animd:hover {
     background: #03e9f4;
     color: #fff;
     border-radius: 5px;
@@ -95,12 +104,12 @@ html {
                 0 0 100px #03e9f4;
   }
   
-  .login-box a span {
+  .login-box .btn-animd span {
     position: absolute;
     display: block;
   }
   
-  .login-box a span:nth-child(1) {
+  .login-box .btn-animd span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
@@ -118,7 +127,7 @@ html {
     }
   }
   
-  .login-box a span:nth-child(2) {
+  .login-box .btn-animd span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
@@ -137,7 +146,7 @@ html {
     }
   }
   
-  .login-box a span:nth-child(3) {
+  .login-box .btn-animd span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
@@ -156,7 +165,7 @@ html {
     }
   }
   
-  .login-box a span:nth-child(4) {
+  .login-box .btn-animd span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;

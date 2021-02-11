@@ -1,21 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import FestivalCard from './FestivalCard'
 import './styles/FestReview.css'
-function FestReview({ favorites, setFavorites, currentUser }) {
-
+function FestReview({ favorites, setFavorites, currentUser, favoritesLength, setFavoritesLength }) {
+    const [search, setSearch] = useState("")
     const festivals = useSelector(state => state.festival.fests)
 
-    const mappedFestivals = festivals.map(fest => {
-        const favorite = favorites.map(fav => fav.festival_id === fest.id)
-        return <FestivalCard key={fest.id} festival={fest} currentUser={currentUser} favorite={favorite} favorites={favorites} setFavorites={setFavorites}/>
+    function handleSearchChange(newSearch){
+        setSearch(newSearch)
+    }
+
+
+
+    const displayedFests = festivals.filter(fest => fest.name.toLowerCase().includes(search.toLowerCase()))
+    
+    const mappedFestivals = displayedFests.map(fest => {
+        const favorite = favorites.find(fav => fav.festival_id === fest.id)
+        return <FestivalCard key={fest.id} festival={fest} currentUser={currentUser} favorite={favorite} favorites={favorites} setFavorites={setFavorites} favoritesLength={favoritesLength} setFavoritesLength={setFavoritesLength}/>
     })
 
     return (
         <div className="festival-container">
             <h1 className="fest-container-title">You're in FestHeaven!</h1>
-            <h1 className="fest-container-title">Here you can check out a fest and what other festies are saying..</h1>
-            <h1 className="fest-container-title">You can also leave your own review for a fest! Click on a lineup to try it out!</h1>
+            <h1 className="fest-container-title">Check out a Fest and what other festies are saying</h1>
+            <h1 className="fest-container-title">and leave your own review for a fest!</h1>
+            <div class="search-container">
+                <input 
+                    placeholder='Search...'
+                    className='fest-search'
+                    type="text"
+                    value={search}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                />
+                <div class="search"></div>
+            </div>
             {mappedFestivals}
         </div>
     )

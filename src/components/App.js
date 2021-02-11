@@ -5,7 +5,7 @@ import FestReview from './FestReview';
 import Favorites from './Favorites';
 import Reviews from './Reviews'
 import Login from './Login';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import NavBar from './NavBar';
 import { useEffect, useState } from 'react';
 import { addFests } from '../redux/festival';
@@ -16,6 +16,8 @@ import Profile from './Profile';
 import Trending from './Trending';
 import EditProfileForm from './EditProfileForm';
 import Signup from './Signup';
+import FestieFinder from './FestieFinder';
+import FestieProfile from './FestieProfile';
 
 
 function App() {
@@ -24,7 +26,10 @@ function App() {
   const [favorites, setFavorites] = useState([])
   const [editFormData, setEditFormData] = useState(null)
   const [editProfileFormData, setEditProfileFormData] = useState({})
-  
+  const [reviewsLength, setReviewsLength] = useState(0)
+  const [favoritesLength, setFavoritesLength] = useState(0)
+  const [trending, setTrending] = useState([])
+
   const dispatch = useDispatch()
   const history = useHistory()
   
@@ -33,23 +38,27 @@ function App() {
     .then(r => r.json())
     .then(festivalObjs => {
       dispatch(addFests(festivalObjs))
-      handleLogin()
     })
   }, [dispatch])
 
-  function handleLogin() {
+
+  function handleLogin(e) {
+    e.preventDefault()
+    
     fetch(`${process.env.REACT_APP_API_BASE_URL}/login`)
       .then((r) => r.json())
       .then(userObj => {
         setCurrentUser(userObj)
-        setReviews(userObj.reviews)
+        // setReviews(userObj.reviews)
         setFavorites(userObj.favorites)
-        history.push('/')
+        history.push('/festivals')
       });
   }
 
   function handleLogout() {
     setCurrentUser(null)
+    setFavorites([])
+    setReviews([])
   }
 
   function handleDelete(reviewToDelete) {
@@ -59,6 +68,7 @@ function App() {
     .then(r => r.json())
     .then(deletedReview => {
         setReviews(reviews.filter(review => review.id !== reviewToDelete.id))
+        setReviewsLength(reviewsLength > 0 ? reviewsLength - 1 : 0)
     })
   }
 
@@ -78,6 +88,7 @@ function App() {
     .then(deletedFav => {
       const filteredFavs = favorites.filter(favorite => favorite.id !== favToRemove.id)
       setFavorites(filteredFavs)
+      setFavoritesLength(favoritesLength - 1)
     })
   }
 
@@ -94,6 +105,8 @@ function App() {
     .then(festivalObj => setEditFormData(reviewToEdit))
     history.push(`/festivals/${reviewToEdit.festival_id}`)
 }
+
+  
 
   return (
     <div className="App">
@@ -115,6 +128,8 @@ function App() {
             currentUser={currentUser}
             favorites={favorites}
             setFavorites={setFavorites}
+            favoritesLength={favoritesLength}
+            setFavoritesLength={setFavoritesLength}
           />
         </Route>
         <Route exact path="/festivals/trending">
@@ -122,6 +137,8 @@ function App() {
             currentUser={currentUser}
             favorites={favorites}
             setFavorites={setFavorites}
+            trending={trending}
+            setTrending={setTrending}
           />
         </Route>
         <Route path="/festivals/:id">
@@ -133,6 +150,8 @@ function App() {
             setReviews={setReviews}
             handleDelete={handleDelete}
             handleEditButtonClick={handleEditButtonClick}
+            setReviewsLength={setReviewsLength}
+            reviewsLength={reviewsLength}
           />
         </Route>
         <Route path="/about">
@@ -180,6 +199,20 @@ function App() {
             favorites={favorites}
           />
         </Route>
+        <Route exact path="/festiefinder">
+          <FestieFinder
+            currentUser={currentUser}
+            reviews={reviews}
+            favorites={favorites}
+          />
+        </Route>
+        <Route exact path="/festiefinder/:id">
+          <FestieProfile
+            currentUser={currentUser}
+            reviews={reviews}
+            favorites={favorites}
+          />
+        </Route>
         <Route path="/login">
           <Login
             onLogin={handleLogin}
@@ -191,9 +224,9 @@ function App() {
           />
         </Route>
         
-        {/* <Route path="*">
+        <Route path="*">
           <Redirect to="/" />
-        </Route> */}
+        </Route>
       </Switch>
     </div>
   );

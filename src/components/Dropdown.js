@@ -21,7 +21,7 @@ function Dropdown() {
                 <ul>
                     <li><Link to="/festivals/trending" onClick={closeMenu}>Trending</Link></li>
                     <li><Link to="/about" onClick={closeMenu}>Festie101</Link></li>
-                    <li><Link to="/profile/festdule" onClick={closeMenu}>Festdule</Link></li>
+                    <li><Link to="/festiefinder" onClick={closeMenu}>Festie Finder</Link></li>
                 </ul>
             </nav>
       </div>

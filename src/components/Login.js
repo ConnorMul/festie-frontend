@@ -30,13 +30,13 @@ function Login({ onLogin }) {
                     />
                     <label>Password</label>
                 </div>
-                <a href="/">
+                <div className="btn-animed">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                        Submit
-                </a>
+                        <button className="login-submit-btn">Submit</button>
+                </div>
             </form>
         </div>
         </div>

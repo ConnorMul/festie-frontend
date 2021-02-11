@@ -30,9 +30,9 @@ function ProfileReviewCard({ currentUser, review, handleDelete, handleEditReview
                     {review.stars === 5 ? "🌟🌟🌟🌟🌟" : null}
                     <br />
                     <br />
-                <button className="delete-review-btn" onClick={() => handleEditReviewButtonClick(review)}>📝📝📝</button>
+                <button className="delete-review-btn" onClick={() => handleEditReviewButtonClick(review)}>Edit 📝📝📝</button>
                 <br />
-                <button className="delete-review-btn" onClick={() => handleDelete(review)}>💣💣💣</button>
+                <button className="delete-review-btn" onClick={() => handleDelete(review)}>Delete 💣💣💣</button>
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 .comment-card {
-    background: rgba(0,0,0,.7);
+    background: rgba(0,0,0,.8);
     color: white;
     /* text-align: center; */
     
@@ -23,11 +23,16 @@
     top: 100%; 
     /* left: 50%;  */
     /* width: 400px; */
-   
+   margin-top: 20px;
+   margin-bottom: 40px;
     /* transform: translate(-50%, -50%); */
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,.8);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
+}
+
+.edit-btn, .delete-btn {
+    color: white;
 }
 

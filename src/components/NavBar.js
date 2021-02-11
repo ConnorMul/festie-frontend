@@ -10,7 +10,7 @@ function NavBar({ onLogin, handleLogout, currentUser }) {
     
     return (
         <div className="navbar">
-            <NavLink className="navbar-links" to="/festivals">Fests</NavLink>
+            <NavLink className="navbar-links" to="/festivals">Festivals</NavLink>
             <div id="dropdown-container">
                 <Dropdown />
             </div>
@@ -22,8 +22,8 @@ function NavBar({ onLogin, handleLogout, currentUser }) {
             </>
             :
             <>
-                <NavLink to='/login' className="navbar-links">Login</NavLink> 
-                <NavLink to='/signup' className="navbar-links">Signup</NavLink>
+                <NavLink to='/login' className="navbar-links-login">LogIn</NavLink> 
+                <NavLink to='/signup' className="navbar-links">Sign-Up</NavLink>
             </>
             }
         </div>

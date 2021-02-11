@@ -11,9 +11,36 @@
     color: white;
 }
 
+.fest-review-form-container h1, .fest-review-form-container h2 {
+    color: white;
+    --fill-color: #e279f7;
+    font: 100 Raleway, sans-serif;
+      text-decoration: none;
+      text-transform: uppercase;
+      -webkit-text-stroke: 2px var(--fill-color);
+      background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
+      /* color: transparent; */
+      margin: 0 auto;
+      padding-bottom: 10px;
+}
+
 .fest-review-form, .review-title {
+    
     color: white;
     
+}
+
+.review-title {
+    color: white;
+    --fill-color: #e279f7;
+    font: 100 Raleway, sans-serif;
+      text-decoration: none;
+      text-transform: uppercase;
+      -webkit-text-stroke: 2px var(--fill-color);
+      background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
+      /* color: transparent; */
+      margin: 0 auto;
+      padding-bottom: 10px;
 }
 
 .comment-section {
@@ -26,7 +53,7 @@
 
 .stars {
     padding-top: 3%;
-    padding-left: 37%;
+    padding-left: 39%;
     display: inline-block;
     border: none;
     outline:none;
@@ -35,4 +62,15 @@
 .react-stars-wrapper-04465423467562937 {
     border: none;
     outline: none;
+}
+
+.submit-btn {
+    border: none;
+    outline: none;
+}
+
+.textarea {
+    outline: none;
+    border: none;
+    resize: none;
 }

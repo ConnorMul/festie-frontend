@@ -11,14 +11,14 @@ function Favorites({ currentUser, favorites, reviews, handleDeleteFavorite }) {
     
     
     return (
-        <>
+        <div className="main-profile-container">
         <h1 className="faved-title">Fests you've Faved!</h1>
             <div className="profile-container">
                 <div className="favorites-container">
                     {favs}
                 </div>
             </div>
-        </>
+        </div>
        
     )
 }

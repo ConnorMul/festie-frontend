@@ -4,14 +4,14 @@ import { useParams } from 'react-router-dom'
 import FestivalReviewCard from './FestivalReviewCard'
 import './styles/FestReviewForm.css'
 
-function FestReviewForm({ setEditFormData, handleEditButtonClick, editFormData, reviews, setReviews, handleDelete, currentUser }) {
+function FestReviewForm({ reviewsLength, setReviewsLength, setEditFormData, handleEditButtonClick, editFormData, reviews, setReviews, handleDelete, currentUser }) {
     const [festival, setFestival] = useState()
     const [stars, setStars] = useState(null)
     const [formData, setFormData] = useState({
         content: "",
         stars: 0
     })
-    const [reviewsLength, setReviewsLength] = useState(0)
+    // const [reviewsLength, setReviewsLength] = useState(0)
     console.log(reviewsLength)
     const params = useParams()
 
@@ -21,10 +21,11 @@ function FestReviewForm({ setEditFormData, handleEditButtonClick, editFormData, 
         .then(festivalObj => {
             setFestival(festivalObj)
             setReviewsLength(festivalObj.reviews.length)
+            setReviews(festivalObj.reviews)
             })
         }, [params.id])
 
-
+console.log(festival)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -37,6 +38,7 @@ function FestReviewForm({ setEditFormData, handleEditButtonClick, editFormData, 
             },
             body: JSON.stringify({
                 ...formData,
+                festival: festival,
                 festival_id: festival.id,
                 user_id: currentUser.id
             
@@ -87,9 +89,9 @@ function FestReviewForm({ setEditFormData, handleEditButtonClick, editFormData, 
         <div className="fest-review-form-container">
             <div className="comment-section">
                 <h1>Here's what others are saying about</h1>
-                <h2>{festival ? festival.name : null}</h2>
+                <h1>{festival ? festival.name : null}</h1>
                 
-                {reviews && festival ? reviews.map(review => review.festival_id === festival.id ? 
+                {reviews && festival ? reviews.map(review =>
                 <FestivalReviewCard 
                     key={review.id} 
                     review={review} 
@@ -99,14 +101,14 @@ function FestReviewForm({ setEditFormData, handleEditButtonClick, editFormData, 
                     festival={festival} 
                     stars={stars}
                     setStars={setStars}
-                />
-                : null) : null}
+                />)
+                : null}
                 {reviewsLength === 0 ? "No Reviews Yet! Leave one now!" : null}
             </div>
             
             <div className="form-section">
                 <h1 className="review-title">Tell us about {festival ? festival.name : null}</h1>
-                <h2 className="review-title">What did ya think? Would ya go again?</h2>
+                <h2 className="review-title">What did you think? Would you go again?</h2>
                 <h2 className="review-title">Was {festival ? festival.name : null} not for you? Let us know!</h2>
                 <img src={festival ? festival.image : null} alt={festival ? festival.name : null} />
                 <form className="fest-review-form" onSubmit={editFormData ? (evt) => handleEditSubmit(evt, editFormData.id) : handleSubmit}>
@@ -115,6 +117,7 @@ function FestReviewForm({ setEditFormData, handleEditButtonClick, editFormData, 
                     <textarea 
                         rows="10"
                         cols="45"
+                        className="textarea"
                         required
                         placeholder="This festival was the best time I have ever had, I can't wait to go back next year!"
                         value={editFormData ? editFormData.content : formData.content} 

@@ -1,21 +1,151 @@
-/* html { 
-    background: url('./festie/festival.JPG') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-} */
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
 
 .fest-container-title {
+    padding: 0px;
     color: white;
+    --fill-color: #e279f7;
+    font: 100 Raleway, sans-serif;
+      text-decoration: none;
+      text-transform: uppercase;
+      -webkit-text-stroke: 2px var(--fill-color);
+      background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
+      /* color: transparent; */
+      margin: 0 auto;
+      padding-bottom: 10px;
 }
 
 .festival-container {
     background: url('../festie/festival.JPG') no-repeat center center fixed;
     min-height: 100vh;
-    padding-top: 3%;
+    padding-top: 1%;
 }
 
 .edit-btn, .delete-btn {
     color: black;
 }
+
+/*  SEARCH BAR  */
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+
+.search-container {
+  position: relative;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+}
+  .search-container .search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: rgb(233, 87, 201);
+    border-radius: 50%;
+    transition: all 1s;
+    z-index: 4;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 25px 0 rgb(20, 190, 220);
+  }
+    .search:hover {
+      cursor: pointer;
+    }
+    .search::before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: 22px;
+      right: 0;
+      bottom: 0;
+      left: 22px;
+      width: 12px;
+      height: 2px;
+      background: white;
+      transform: rotate(45deg);
+      transition: all .5s;
+    }
+    .search::after {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: -5px;
+      right: 0;
+      bottom: 0;
+      left: -5px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 2px solid white;
+      transition: all .5s;
+    }
+  
+  .fest-search {
+    font-family: 'Inconsolata', monospace;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgb(20, 190, 220);
+    color: white;
+    text-shadow: 0 0 10px rgb(20, 190, 220);
+    padding: 0 80px 0 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 25px 0 rgb(20, 190, 220),
+                0 20px 25px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 25px 0 rgba(0, 0, 0, 0.5);
+    transition: all 1s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+  }
+    .fest-search:hover {
+      cursor: pointer;
+    }
+    .fest-search:focus {
+      width: 200px;
+      opacity: 1;
+      cursor: text;
+    }
+    .fest-search:focus ~ .search {
+      right: -250px;
+      background: #151515;
+      z-index: 6;
+    }
+      .fest-search::before {
+        top: 0;
+        left: 0;
+        width: 25px;
+      }
+      .fest-search::after {
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 2px;
+        border: none;
+        background: white;
+        border-radius: 0%;
+        transform: rotate(-45deg);
+      }
+
+    .fest-search::placeholder {
+      color: white;
+      opacity: 0.5;
+      font-weight: bolder;
+    }
+  
+

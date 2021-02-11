@@ -22,7 +22,7 @@ function FestFriend({ currentUser }) {
     },[])
 
     function handleChange(e) {
-        setFormData({...formData, festival_id: e.target.value})
+        setFormData({...formData, festival_id: parseInt(e.target.value)})
     }
 
     const mappedOptions = festivals.map(festival => {
@@ -49,7 +49,7 @@ function FestFriend({ currentUser }) {
         .then(r => r.json())
         .then(postObj => {
 
-        
+            console.log(postObj)
             setPosts([...posts, postObj])
             setFormData({
                 image: "",
@@ -68,13 +68,14 @@ function FestFriend({ currentUser }) {
             <div className="festiefeed-box-container">
             <div className="festiefeed-box">
             <form onSubmit={handleSubmit} className="add-post-form">
-                <label>Image</label><br />
+                <label>Provide a link to your image!</label><br />
                 <input 
                     type="text"
                     value={formData.image}
                     onChange={(e) => setFormData({...formData, image: e.target.value})}
                     required
                 />
+                <br />
                 <br />
                 <label>Caption it!</label>
                 <br />
@@ -84,6 +85,7 @@ function FestFriend({ currentUser }) {
                     onChange={(e) => setFormData({...formData, caption: e.target.value})}
                     required
                 />
+                <br />
                 <br />
                 <label>What Festival did you take this at?</label>
                 <br />
