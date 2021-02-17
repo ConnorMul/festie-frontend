@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import FestivalCard from './FestivalCard'
+import React, { useEffect } from 'react'
 import './styles/Trending.css'
+import TrendingFestivalCard from './TrendingFestivalCard'
 
-function Trending({ currentUser, favorites, setFavorites, trending, setTrending }) {
-    
+function Trending({ currentUser, favorites, setFavorites, trending, setTrending, setFavoritesLength }) {
+
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/festivals`)
         .then(r => r.json())
@@ -13,11 +12,15 @@ function Trending({ currentUser, favorites, setFavorites, trending, setTrending 
         })
     },[])
 
-    const sortedFestivals = trending.sort((fest1, fest2) => fest1.average_star_rating - fest2.average_star_rating).slice(0, 8)
+
+
+    const sortedFestivals = trending.sort((fest1, fest2) => fest2.average_star_rating - fest1.average_star_rating).slice(0, 8)
     .map(festival => {
         const favorite = favorites.find(fav => fav.festival_id === festival.id)
-        return <FestivalCard key={festival.id} festival={festival} currentUser={currentUser} favorite={favorite} favorites={favorites} setFavorites={setFavorites}/>
+        return <TrendingFestivalCard key={festival.id} festival={festival} currentUser={currentUser} favorite={favorite} favorites={favorites} setFavorites={setFavorites} setFavoritesLength={setFavoritesLength}/>
     })
+
+    console.log(sortedFestivals)
     return (
         <div className="trending-container">
             <h1 className="trending-title">Talk about a killer set!</h1>

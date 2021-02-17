@@ -12,22 +12,28 @@ html {
   width: 100%;
 }
 
+button {
+  outline: none;
+}
+
 img {
   height: 375px;
   width: 300px;
-}
-
-.festival-container {  
-
 }
 
 div.festival-card {
   background: rgba(0, 0, 0, 0.5);
   color: white;
   margin: 5px;
-  /* margin: 0 auto; */
+
   padding: 25px;
   display: inline-block;
+}
+
+.festival-card:hover {
+  transform: scale(1.05);
+  transition: 0.8s;
+
 }
 
 .festival-card h3:hover, .festival-card img:hover {
@@ -41,7 +47,7 @@ div.home-page-card {
   background-color: rgba(0, 0, 0, 0.678);
   margin: 0;
   padding-top: 1%;
-  padding-bottom: 12%;
+  padding-bottom: 50%;
 }
 
 .fav-btn {
@@ -58,7 +64,7 @@ div.home-page-card {
     text-transform: uppercase;
     -webkit-text-stroke: 1.5px var(--fill-color);
     background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
-    /* background-color: rgba(0, 0, 0, 0.753); */
+    
 }
 
 .festie-description {
@@ -69,9 +75,9 @@ div.home-page-card {
     -webkit-text-stroke: 1.5px var(--fill-color);
     background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
   display: inline-block;
-  /* font-size: 100px; */
+ 
   padding: 5px;
-  /* background-color: rgba(0, 0, 0, 0.753); */
+  
 }
 
 .festie-description p {

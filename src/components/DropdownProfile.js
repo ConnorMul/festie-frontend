@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom';
 import './styles/Dropdown.css'
 import { useDetectOutsideClick } from './useDetectOutsideClick';
 
-function DropdownProfile({ handleLogout }) {
+function DropdownProfile({ handleLogout, currentUser }) {
     const dropdownRef = useRef(null);
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
     const onClick = () => setIsActive(!isActive);
@@ -15,8 +15,8 @@ function DropdownProfile({ handleLogout }) {
     return (
         <div className="menu-container">
             <Link onClick={onClick} className="menu-trigger">
-                Profile
-    
+                {currentUser.username}
+
             </Link>
             <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
                 <ul>

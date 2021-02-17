@@ -10,7 +10,7 @@ function FestReview({ favorites, setFavorites, currentUser, favoritesLength, set
         setSearch(newSearch)
     }
 
-
+    
 
     const displayedFests = festivals.filter(fest => fest.name.toLowerCase().includes(search.toLowerCase()))
     
@@ -24,7 +24,7 @@ function FestReview({ favorites, setFavorites, currentUser, favoritesLength, set
             <h1 className="fest-container-title">You're in FestHeaven!</h1>
             <h1 className="fest-container-title">Check out a Fest and what other festies are saying</h1>
             <h1 className="fest-container-title">and leave your own review for a fest!</h1>
-            <div class="search-container">
+            <div className="search-container">
                 <input 
                     placeholder='Search...'
                     className='fest-search'
@@ -32,7 +32,7 @@ function FestReview({ favorites, setFavorites, currentUser, favoritesLength, set
                     value={search}
                     onChange={(e) => handleSearchChange(e.target.value)}
                 />
-                <div class="search"></div>
+                <div className="search"></div>
             </div>
             {mappedFestivals}
         </div>

@@ -1,18 +1,46 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import './styles/Signup.css'
 
-function Signup() {
+function Signup({ setCurrentUser }) {
     const [signupData, setSignupData] = useState({
         username: "",
         password: "",
-        email: ""
+        email: "",
+        avatar: {}
     })
+
+    const history = useHistory()
+
+    function handleSignup(e) {
+        e.preventDefault()
+
+        const form = new FormData()
+        form.append("username", signupData.username)
+        form.append("password", signupData.password)
+        form.append("email", signupData.email)
+        form.append("avatar", signupData.avatar)
+
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/signup`, {
+            method: "POST",
+            // headers: {
+            //     "Content-Type": "application/json"
+            // },
+            body: form
+        })
+        .then(r => r.json())
+        .then(data => {
+            setCurrentUser(data.user)
+            localStorage.setItem("token", data.token)
+            history.push("/festivals")
+        })
+    }
 
     return (
         <div className="signup-box-container">
         <div className="signup-box">
             <h2>Signup</h2>
-            <form  className="signup-form">
+            <form  className="signup-form" onSubmit={handleSignup}>
                 <div className="user-box">
                     <input
                         type="text"
@@ -38,7 +66,15 @@ function Signup() {
                         onChange={(e) => setSignupData({...signupData, email: e.target.value})}
                         required
                     />
-                    <label>email</label>
+                    <label>Email</label>
+                </div>
+                <div className="user-box">
+                    <input
+                        type="file"
+                        // value={signupData.avatar}
+                        onChange={(e) => setSignupData({...signupData, avatar: e.target.files[0]})}
+                        required
+                    />
                 </div>
                 <div className="btn-animd">
                     <span></span>

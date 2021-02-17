@@ -1,6 +1,8 @@
 .navbar {
-    background-color: rgba(0, 0, 0, 0.9);
-    /* position: fixed; */
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    width: 100vw;
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -12,6 +14,7 @@
     color: white;
     /* padding-left: 13%;
     padding-right: 13%; */
+    margin-bottom: 5px;
    
     transition: all .7s ease-in;
 }
@@ -92,5 +95,5 @@ ul {
 }
 
 .navbar-links-login {
-    margin-right: 75px;
+    margin-right: 85px;
 }

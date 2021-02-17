@@ -14,9 +14,24 @@
     padding-bottom: 5%;
 }
 
-.fest-details {
-    /* background-color: black; */
-    /* opacity: 85%; */
+.profile-review-card {
+    display: inline-block;
+    width: 20%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin: 5px;
+    padding: 25px;
+}
+
+.profile-review-card img {
+    width: 100%;
+}
+
+.fest-details .review-content {
+    /* display: wrap; */
+    flex-direction: column;
+    object-fit: contain;
+    overflow: scroll;
 }
 
 #reviewed-title {
@@ -30,10 +45,11 @@
       /* color: transparent; */
       margin: 0 auto;
       padding-bottom: 10px;
+      margin-top: 30px;
 }
 
 .review-profile-container {
-    background: url('../festie/tame.jpg') no-repeat center center fixed;
+    background: url('../festie/favorites.jpg') no-repeat center center fixed;
     min-height: 100vh;
     -webkit-background-size: cover;
     -moz-background-size: cover;

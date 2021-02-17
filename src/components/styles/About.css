@@ -8,7 +8,7 @@
     padding-top: 3%;
     
     color: white;
-    
+    background-color: rgba(0, 0, 0, 0.596);
 
 }
 
@@ -22,4 +22,16 @@
       background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
       /* color: transparent; */
       margin: 0 auto;
-      padding-bottom: 10px;}
+      padding-bottom: 10px;
+      margin-top: 25px;    
+}
+
+.five-tips-container {
+    background-color: rgba(0, 0, 0, 0.699);
+    display: inline-block;
+    padding: 10px;
+}
+
+.festie-101-container p {
+  font-size: large;
+}

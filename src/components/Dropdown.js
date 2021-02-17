@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom';
 import './styles/Dropdown.css'
 import { useDetectOutsideClick } from './useDetectOutsideClick';

@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import ReactStars from 'react-rating-stars-component'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import './styles/Reviews.css'
 
-function ProfileReviewCard({ currentUser, review, handleDelete, handleEditReviewButtonClick }) {
+function ProfileReviewCard({ review, handleDelete, handleEditReviewButtonClick }) {
     const [festival, setFestival] = useState({})
-
-    const history = useHistory()
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/festivals/${review.festival_id}`)
@@ -18,11 +15,11 @@ function ProfileReviewCard({ currentUser, review, handleDelete, handleEditReview
     
     
     return (
-        <div className="festival-card">
+        <div className="profile-review-card">
             <div className="fest-details">
                 <img src={festival.image} alt={festival.name} />
                 <p>{festival.name}</p>
-                <p>{review.content}</p>
+                <p className="review-content">{review.content}</p>
                     {review.stars === 1 ? "🌟" : null}
                     {review.stars === 2 ? "🌟🌟" : null}
                     {review.stars === 3 ? "🌟🌟🌟" : null}

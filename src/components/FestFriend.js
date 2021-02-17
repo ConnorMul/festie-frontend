@@ -7,9 +7,9 @@ function FestFriend({ currentUser }) {
     const [posts, setPosts] = useState([])
     const [showForm, setShowForm] = useState(false)
     const [formData, setFormData] = useState({
-        image: "",
-        caption: "",
-        user_id: 0,
+        image: {},
+        // caption: "",
+        user_id: null,
         festival_id: null
     })
 
@@ -22,7 +22,12 @@ function FestFriend({ currentUser }) {
     },[])
 
     function handleChange(e) {
-        setFormData({...formData, festival_id: parseInt(e.target.value)})
+        setFormData({...formData, 
+            festival_id: parseInt(e.target.value),
+            user_id: currentUser.id,
+            user: currentUser,
+            festival: festivals.find(festival => festival.id === parseInt(e.target.value))
+        })
     }
 
     const mappedOptions = festivals.map(festival => {
@@ -35,16 +40,16 @@ function FestFriend({ currentUser }) {
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        const form = new FormData()
+        form.append("image", formData.image)
+        form.append("user_id", formData.user_id)
+        form.append("festival_id", formData.festival_id)
         
         fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                ...formData,
-                user_id: currentUser.id
-            })
+
+            body: form
         })
         .then(r => r.json())
         .then(postObj => {
@@ -52,30 +57,37 @@ function FestFriend({ currentUser }) {
             console.log(postObj)
             setPosts([...posts, postObj])
             setFormData({
-                image: "",
-                caption: "",
-                user_id: 0,
+                image: null,
+                // caption: "",
+                user_id: null,
                 festival_id: null
-            })    
+            })
+            setShowForm(false)
         })
+    }
+
+    function handleFileAdd(e) {
+        e.persist()
+        setFormData({...formData, image: e.target.files[0]})
     }
 
     return (
         <div className="fest-friend-container">
             <h1 className="festiefeed-title">This is FestieFeed! Users can post their fest pics here</h1>
-            <h1 className="festiefeed-title">Check out what others are posting and <button className="add-to-feed-btn" onClick={() => setShowForm(!showForm)}>Post your own!</button></h1>
+            <h1 className="festiefeed-post-btn"><button className="add-to-feed-btn" onClick={() => setShowForm(!showForm)}>Post your own!</button></h1>
             {showForm ? 
             <div className="festiefeed-box-container">
             <div className="festiefeed-box">
             <form onSubmit={handleSubmit} className="add-post-form">
                 <label>Provide a link to your image!</label><br />
                 <input 
-                    type="text"
-                    value={formData.image}
-                    onChange={(e) => setFormData({...formData, image: e.target.value})}
+                    type="file"
+                    name="image"
+                    className="file"
+                    onChange={handleFileAdd}
                     required
                 />
-                <br />
+                {/* <br />
                 <br />
                 <label>Caption it!</label>
                 <br />
@@ -84,17 +96,24 @@ function FestFriend({ currentUser }) {
                     value={formData.caption}
                     onChange={(e) => setFormData({...formData, caption: e.target.value})}
                     required
-                />
+                /> */}
                 <br />
                 <br />
                 <label>What Festival did you take this at?</label>
                 <br />
-                <select placeholder="Select a Fest" onChange={handleChange}>
+                <select className="select" onChange={handleChange}>
+                <option value="" disabled selected>Select a Fest</option>
                     {mappedOptions}
                 </select>
                 <br />
                 <br />
-                <button>Post</button>
+                <div className="btn-animed">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                        <button className="login-submit-btn">Post</button>
+                </div>
             </form>
             </div>
             </div>

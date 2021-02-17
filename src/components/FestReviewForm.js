@@ -3,16 +3,16 @@ import ReactStars from "react-rating-stars-component";
 import { useParams } from 'react-router-dom'
 import FestivalReviewCard from './FestivalReviewCard'
 import './styles/FestReviewForm.css'
+import Swal from 'sweetalert2'
 
-function FestReviewForm({ reviewsLength, setReviewsLength, setEditFormData, handleEditButtonClick, editFormData, reviews, setReviews, handleDelete, currentUser }) {
+function FestReviewForm({ setUserReviews, userReviews, reviewsLength, setReviewsLength, setEditFormData, handleEditButtonClick, editFormData, reviews, setReviews, handleDelete, currentUser }) {
     const [festival, setFestival] = useState()
     const [stars, setStars] = useState(null)
     const [formData, setFormData] = useState({
         content: "",
         stars: 0
     })
-    // const [reviewsLength, setReviewsLength] = useState(0)
-    console.log(reviewsLength)
+
     const params = useParams()
 
     useEffect(() => {
@@ -22,10 +22,8 @@ function FestReviewForm({ reviewsLength, setReviewsLength, setEditFormData, hand
             setFestival(festivalObj)
             setReviewsLength(festivalObj.reviews.length)
             setReviews(festivalObj.reviews)
-            })
+        })
         }, [params.id])
-
-console.log(festival)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -45,14 +43,20 @@ console.log(festival)
             })
         })
         .then(r => r.json())
-        .then(reviewObj => setReviews([...reviews, reviewObj]),
-        setFormData({
-            content: "",
-        stars: 0
-        }),
+        .then(reviewObj => {
+            setReviews([...reviews, reviewObj])
+            setUserReviews([...userReviews, reviewObj])
+            setFormData({
+                content: "",
+                stars: 0
+            })
         setReviewsLength(reviewsLength + 1)
-        )
-        : alert("You must be logged in to review a festival!")
+        })
+        : Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Login to leave a Review!'
+          })
     }
 
     function handleEditSubmit(evt, id) {
@@ -71,14 +75,16 @@ console.log(festival)
             const filteredReviews = reviews.filter(review => review.id !== id)
             setStars(editedComment.stars)
             setReviews([...filteredReviews, editedComment])
+            const filteredForUser = userReviews.filter(review => review.id !== id)
+            setUserReviews([...filteredForUser, editedComment])
             setEditFormData(null)
         })
-        
+
     }
-    
+
 
     const ratingChanged = (newRating) => {
-        editFormData ? 
+        editFormData ?
         setEditFormData({...editFormData, stars: newRating})
         :
         setFormData({...formData, stars: newRating})
@@ -88,24 +94,21 @@ console.log(festival)
     return (
         <div className="fest-review-form-container">
             <div className="comment-section">
-                <h1>Here's what others are saying about</h1>
-                <h1>{festival ? festival.name : null}</h1>
-                
+                <h1 className="review-title">Here's what others are saying about</h1>
+                <h1 className="review-title">{festival ? festival.name : null}</h1>
+
                 {reviews && festival ? reviews.map(review =>
-                <FestivalReviewCard 
-                    key={review.id} 
-                    review={review} 
-                    currentUser={currentUser} 
-                    handleEditButtonClick={handleEditButtonClick} 
-                    handleDelete={handleDelete} 
-                    festival={festival} 
-                    stars={stars}
-                    setStars={setStars}
+                <FestivalReviewCard
+                    key={review.id}
+                    review={review}
+                    currentUser={currentUser}
+                    handleEditButtonClick={handleEditButtonClick}
+                    handleDelete={handleDelete}
                 />)
                 : null}
                 {reviewsLength === 0 ? "No Reviews Yet! Leave one now!" : null}
             </div>
-            
+
             <div className="form-section">
                 <h1 className="review-title">Tell us about {festival ? festival.name : null}</h1>
                 <h2 className="review-title">What did you think? Would you go again?</h2>
@@ -129,7 +132,8 @@ console.log(festival)
                         } 
                     />
                     <br />
-                    <label>How many stars would you rate {festival ? festival.name : null}?</label>
+                    <br />
+                    <label className="star-label">How many stars would you rate {festival ? festival.name : null}?</label>
                     <br />
                     <ReactStars
                         classNames="stars"
@@ -141,7 +145,13 @@ console.log(festival)
                         required
                     />
                     <br />
-                    <button className="submit-btn">Submit</button>
+                    <div className="btn-animd">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                       <button className="signup-submit-btn">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>

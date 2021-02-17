@@ -1,12 +1,11 @@
-import React from 'react'
-import ReactStars from "react-rating-stars-component";
-import festival from '../redux/festival';
+import React, { useEffect, useState } from 'react'
 import './styles/FestivalReviewCard.css'
 
-function FestivalReviewCard({ festival, handleDelete, handleEditButtonClick, currentUser, review, stars, setStars }) {
+function FestivalReviewCard({ handleDelete, handleEditButtonClick, currentUser, review }) {
     
     return (
         <div className="comment-card">
+            <p>{review.user.username} says</p>
             <p>{review.content}</p>
             
             {review.stars === 1 ? "🌟" : null}

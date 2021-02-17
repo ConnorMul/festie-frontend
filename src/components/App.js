@@ -23,6 +23,7 @@ import FestieProfile from './FestieProfile';
 function App() {
   const [currentUser, setCurrentUser] = useState()
   const [reviews, setReviews] = useState([])
+  const [userReviews, setUserReviews] = useState([])
   const [favorites, setFavorites] = useState([])
   const [editFormData, setEditFormData] = useState(null)
   const [editProfileFormData, setEditProfileFormData] = useState({})
@@ -41,24 +42,30 @@ function App() {
     })
   }, [dispatch])
 
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if(token) {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/autologin`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    .then(r => r.json())
+    .then(user => {
+      setCurrentUser(user)
+      setFavorites(user.favorites)
+      setUserReviews(user.reviews)
+    })
 
-  function handleLogin(e) {
-    e.preventDefault()
-    
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/login`)
-      .then((r) => r.json())
-      .then(userObj => {
-        setCurrentUser(userObj)
-        // setReviews(userObj.reviews)
-        setFavorites(userObj.favorites)
-        history.push('/festivals')
-      });
   }
+  }, [])
 
   function handleLogout() {
     setCurrentUser(null)
     setFavorites([])
     setReviews([])
+    localStorage.removeItem("token")
   }
 
   function handleDelete(reviewToDelete) {
@@ -67,6 +74,7 @@ function App() {
     })
     .then(r => r.json())
     .then(deletedReview => {
+        setUserReviews(userReviews.filter(review => review.id !== reviewToDelete.id))
         setReviews(reviews.filter(review => review.id !== reviewToDelete.id))
         setReviewsLength(reviewsLength > 0 ? reviewsLength - 1 : 0)
     })
@@ -104,14 +112,11 @@ function App() {
     .then(r => r.json())
     .then(festivalObj => setEditFormData(reviewToEdit))
     history.push(`/festivals/${reviewToEdit.festival_id}`)
-}
-
-  
+  }
 
   return (
     <div className="App">
       <NavBar 
-        onLogin={handleLogin}
         currentUser={currentUser}
         handleLogout={handleLogout}
       />
@@ -139,6 +144,7 @@ function App() {
             setFavorites={setFavorites}
             trending={trending}
             setTrending={setTrending}
+            setFavoritesLength={setFavoritesLength}
           />
         </Route>
         <Route path="/festivals/:id">
@@ -152,6 +158,8 @@ function App() {
             handleEditButtonClick={handleEditButtonClick}
             setReviewsLength={setReviewsLength}
             reviewsLength={reviewsLength}
+            setUserReviews={setUserReviews}
+            userReviews={userReviews}
           />
         </Route>
         <Route path="/about">
@@ -160,44 +168,60 @@ function App() {
           />
         </Route>
         <Route exact path="/profile">
+          {currentUser ? 
           <Profile
             currentUser={currentUser}
             reviews={reviews}
             favorites={favorites}
             handleEditProfileClick={handleEditProfileClick}
           />
+          : <Redirect to="/login" />
+          }
         </Route>
         <Route exact path="/profile/edit">
+          {currentUser ?
           <EditProfileForm
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             editProfileFormData={editProfileFormData}
             setEditProfileFormData={setEditProfileFormData}
           />
+            : <Redirect to="/login" />
+          }
         </Route>
         <Route path="/profile/favorites">
+          {currentUser ? 
           <Favorites
             handleDeleteFavorite={handleDeleteFavorite}
             currentUser={currentUser}
             reviews={reviews}
             favorites={favorites}
           />
+            : <Redirect to="/login" />
+          }
         </Route>
         <Route path="/profile/reviews">
+          {currentUser ? 
           <Reviews
             currentUser={currentUser}
+            userReviews={userReviews}
             reviews={reviews}
             favorites={favorites}
             handleDelete={handleDelete}
             handleEditReviewButtonClick={handleEditReviewButtonClick}
           />
+          : <Redirect to="/login" />
+          }
         </Route>
         <Route exact path="/festiefeed">
+          {currentUser ? 
           <FestFriend
             currentUser={currentUser}
             reviews={reviews}
             favorites={favorites}
           />
+          : <Redirect to="/login" />
+          }
         </Route>
         <Route exact path="/festiefinder">
           <FestieFinder
@@ -215,12 +239,16 @@ function App() {
         </Route>
         <Route path="/login">
           <Login
-            onLogin={handleLogin}
+            setCurrentUser={setCurrentUser}
+            setReviews={setReviews}
+            setFavorites={setFavorites}
+            setUserReviews={setUserReviews}
           />
         </Route>
         <Route path="/signup">
           <Signup
-            onLogin={handleLogin}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
           />
         </Route>
         

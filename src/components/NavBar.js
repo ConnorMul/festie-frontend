@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Dropdown from './Dropdown'
 import DropdownProfile from './DropdownProfile'
 import './styles/NavBar.css'
 
-function NavBar({ onLogin, handleLogout, currentUser }) {
-    const [openMenu, setOpenMenu] = useState(false)
-    
-    
+function NavBar({ handleLogout, currentUser }) {
+
     return (
+        
         <div className="navbar">
             <NavLink className="navbar-links" to="/festivals">Festivals</NavLink>
             <div id="dropdown-container">
@@ -18,7 +17,7 @@ function NavBar({ onLogin, handleLogout, currentUser }) {
             {currentUser ? 
             <>
                 <NavLink to='/festiefeed' className="navbar-links">FestieFeed</NavLink>
-                <DropdownProfile handleLogout={handleLogout}/>
+                <DropdownProfile handleLogout={handleLogout} currentUser={currentUser}/>
             </>
             :
             <>
@@ -27,6 +26,7 @@ function NavBar({ onLogin, handleLogout, currentUser }) {
             </>
             }
         </div>
+       
     )
 }
 
