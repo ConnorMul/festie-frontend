@@ -171,8 +171,6 @@ function App() {
           {currentUser ? 
           <Profile
             currentUser={currentUser}
-            reviews={reviews}
-            favorites={favorites}
             handleEditProfileClick={handleEditProfileClick}
           />
           : <Redirect to="/login" />
@@ -193,8 +191,6 @@ function App() {
           {currentUser ? 
           <Favorites
             handleDeleteFavorite={handleDeleteFavorite}
-            currentUser={currentUser}
-            reviews={reviews}
             favorites={favorites}
           />
             : <Redirect to="/login" />
@@ -203,10 +199,7 @@ function App() {
         <Route path="/profile/reviews">
           {currentUser ? 
           <Reviews
-            currentUser={currentUser}
             userReviews={userReviews}
-            reviews={reviews}
-            favorites={favorites}
             handleDelete={handleDelete}
             handleEditReviewButtonClick={handleEditReviewButtonClick}
           />
@@ -217,30 +210,23 @@ function App() {
           {currentUser ? 
           <FestFriend
             currentUser={currentUser}
-            reviews={reviews}
-            favorites={favorites}
           />
           : <Redirect to="/login" />
           }
         </Route>
         <Route exact path="/festiefinder">
           <FestieFinder
-            currentUser={currentUser}
-            reviews={reviews}
-            favorites={favorites}
+
           />
         </Route>
         <Route exact path="/festiefinder/:id">
           <FestieProfile
-            currentUser={currentUser}
-            reviews={reviews}
-            favorites={favorites}
+
           />
         </Route>
         <Route path="/login">
           <Login
             setCurrentUser={setCurrentUser}
-            setReviews={setReviews}
             setFavorites={setFavorites}
             setUserReviews={setUserReviews}
           />

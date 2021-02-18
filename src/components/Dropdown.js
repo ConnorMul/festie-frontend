@@ -20,7 +20,7 @@ function Dropdown() {
             <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
                 <ul>
                     <li><Link to="/festivals/trending" onClick={closeMenu}>Trending</Link></li>
-                    <li><Link to="/about" onClick={closeMenu}>Festie101</Link></li>
+                    <li><Link to="/about" onClick={closeMenu}>Festie 101</Link></li>
                     <li><Link to="/festiefinder" onClick={closeMenu}>Festie Finder</Link></li>
                 </ul>
             </nav>
