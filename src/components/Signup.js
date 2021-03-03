@@ -23,9 +23,7 @@ function Signup({ setCurrentUser }) {
 
         fetch(`${process.env.REACT_APP_API_BASE_URL}/signup`, {
             method: "POST",
-            // headers: {
-            //     "Content-Type": "application/json"
-            // },
+        
             body: form
         })
         .then(r => r.json())
@@ -81,7 +79,7 @@ function Signup({ setCurrentUser }) {
                     <span></span>
                     <span></span>
                     <span></span>
-                       <button className="signup-submit-btn">Submit</button>
+                       <button className="signup-submit-btn">Signup</button>
                 </div>
             </form>
         </div>

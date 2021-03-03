@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './styles/FestivalReviewCard.css'
 
 function FestivalReviewCard({ handleDelete, handleEditButtonClick, currentUser, review }) {

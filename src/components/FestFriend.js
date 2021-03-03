@@ -53,12 +53,9 @@ function FestFriend({ currentUser }) {
         })
         .then(r => r.json())
         .then(postObj => {
-
-            console.log(postObj)
             setPosts([...posts, postObj])
             setFormData({
                 image: null,
-                // caption: "",
                 user_id: null,
                 festival_id: null
             })

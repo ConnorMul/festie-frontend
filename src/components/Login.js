@@ -67,7 +67,7 @@ function Login({ setCurrentUser, setUserReviews, setFavorites }) {
                     <span></span>
                     <span></span>
                     <span></span>
-                        <button className="login-submit-btn">Submit</button>
+                        <button className="login-submit-btn">Login</button>
                 </div>
             </form>
         </div>

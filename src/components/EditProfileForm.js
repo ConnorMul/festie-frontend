@@ -16,7 +16,7 @@ function EditProfileForm({ currentUser, setCurrentUser, editProfileFormData, set
             },
             body: JSON.stringify(editProfileFormData)
         })
-        .then( r=> r.json())
+        .then(r => r.json())
         .then(newUserObj => {
             console.log(newUserObj)
             setCurrentUser(newUserObj)

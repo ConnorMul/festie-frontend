@@ -71,7 +71,6 @@ function FestReviewForm({ setUserReviews, userReviews, reviewsLength, setReviews
         })
         .then(r => r.json())
         .then(editedComment => {
-            console.log(editedComment)
             const filteredReviews = reviews.filter(review => review.id !== id)
             setStars(editedComment.stars)
             setReviews([...filteredReviews, editedComment])

@@ -22,7 +22,7 @@ function NavBar({ handleLogout, currentUser }) {
             :
             <>
                 <NavLink to='/login' className="navbar-links-login">LogIn</NavLink> 
-                <NavLink to='/signup' className="navbar-links">Sign-Up</NavLink>
+                <NavLink to='/signup' className="navbar-links">SignUp</NavLink>
             </>
             }
         </div>

@@ -94,8 +94,9 @@
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
+    margin-top: 5px;
+    letter-spacing: 4px;
+    margin-right: 15px;
   }
   
   .form-section .btn-animd:hover {
