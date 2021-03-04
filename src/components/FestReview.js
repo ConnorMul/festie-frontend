@@ -34,7 +34,7 @@ function FestReview({ favorites, setFavorites, currentUser, favoritesLength, set
             </div>
             {displayedFests.map(fest => {
                 // const favorite = favorites.find(fav => fav.festival_id === fest.id)
-                return <FestivalCard key={fest.id} festival={fest} currentUser={currentUser} favorite={favorites ? favorites.find(fav => fav.festival_id === fest.id) : null} favorites={favorites} setFavorites={setFavorites} favoritesLength={favoritesLength} setFavoritesLength={setFavoritesLength}/>
+                return <FestivalCard key={fest.id} festival={fest} currentUser={currentUser} favorites={favorites} setFavorites={setFavorites} favoritesLength={favoritesLength} setFavoritesLength={setFavoritesLength}/>
             })
 }
         </div>
