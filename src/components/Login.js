@@ -25,7 +25,7 @@ function Login({ setCurrentUser, setUserReviews, setFavorites }) {
                 setUserReviews(user.reviews)
               })
         }
-    }, [])
+    }, [token])
 
     const history = useHistory()
 
