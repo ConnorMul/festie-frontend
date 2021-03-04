@@ -30,6 +30,8 @@ function Login({ setCurrentUser, setUserReviews, setFavorites }) {
                     text: 'Incorrect Username or Password!'
                   })
             } else {
+                console.log(data)
+                console.log(data.user)
             setCurrentUser(data.user)
             setUserReviews(data.user.reviews)
             setFavorites(data.user.favorites)
