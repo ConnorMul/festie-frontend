@@ -8,7 +8,7 @@ function Login({ setCurrentUser, setUserReviews, setFavorites }) {
         username: "",
         password: ""
     })
-    const [token, setToken] = useState("")
+    const [token, setToken] = useState(null)
 
     useEffect(() => {
         if (token) {
