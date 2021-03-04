@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './styles/Login.css'
 import Swal from 'sweetalert2'
@@ -8,6 +8,24 @@ function Login({ setCurrentUser, setUserReviews, setFavorites }) {
         username: "",
         password: ""
     })
+    const [token, setToken] = useState("")
+
+    useEffect(() => {
+        if (token) {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/autologin`, {
+                method: "GET",
+                headers: {
+                  "Authorization": `Bearer ${token}`
+                }
+              })
+              .then(r => r.json())
+              .then(user => {
+                setCurrentUser(user)
+                setFavorites(user.favorites)
+                setUserReviews(user.reviews)
+              })
+        }
+    }, [])
 
     const history = useHistory()
 
@@ -30,11 +48,8 @@ function Login({ setCurrentUser, setUserReviews, setFavorites }) {
                     text: 'Incorrect Username or Password!'
                   })
             } else {
-                console.log(data)
-                console.log(data.user)
-            setCurrentUser(data.user)
-            setUserReviews(data.user.reviews)
-            setFavorites(data.user.favorites)
+            
+            setToken(data.token)
             localStorage.setItem("token", data.token)
             history.push("/festivals")
             }
