@@ -61,6 +61,8 @@ function App() {
   }
   }, [])
 
+  console.log(currentUser)
+
   function handleLogout() {
     setCurrentUser(null)
     setFavorites([])
