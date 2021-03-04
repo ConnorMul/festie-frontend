@@ -10,14 +10,12 @@ function FestReview({ favorites, setFavorites, currentUser, favoritesLength, set
         setSearch(newSearch)
     }
 
-    
-
     const displayedFests = festivals.filter(fest => fest.name.toLowerCase().includes(search.toLowerCase()))
     
-    const mappedFestivals = displayedFests.map(fest => {
-        const favorite = favorites.find(fav => fav.festival_id === fest.id)
-        return <FestivalCard key={fest.id} festival={fest} currentUser={currentUser} favorite={favorite} favorites={favorites} setFavorites={setFavorites} favoritesLength={favoritesLength} setFavoritesLength={setFavoritesLength}/>
-    })
+    // const mappedFestivals = displayedFests.map(fest => {
+    //     const favorite = favorites.find(fav => fav.festival_id === fest.id)
+    //     return <FestivalCard key={fest.id} festival={fest} currentUser={currentUser} favorite={favorite} favorites={favorites} setFavorites={setFavorites} favoritesLength={favoritesLength} setFavoritesLength={setFavoritesLength}/>
+    // })
 
     return (
         <div className="festival-container">
@@ -34,7 +32,11 @@ function FestReview({ favorites, setFavorites, currentUser, favoritesLength, set
                 />
                 <div className="search"></div>
             </div>
-            {mappedFestivals}
+            {displayedFests.map(fest => {
+                // const favorite = favorites.find(fav => fav.festival_id === fest.id)
+                return <FestivalCard key={fest.id} festival={fest} currentUser={currentUser} favorite={favorites ? favorites.find(fav => fav.festival_id === fest.id) : null} favorites={favorites} setFavorites={setFavorites} favoritesLength={favoritesLength} setFavoritesLength={setFavoritesLength}/>
+        })
+}
         </div>
     )
 }
