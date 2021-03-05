@@ -6,11 +6,6 @@ html {
   background-size: cover;
 }
 
-@media (max-width: 500px){ 
-  div.top{
-      width: auto;
-      max-width: none;
-  }}
 
 .App {
   text-align: center;

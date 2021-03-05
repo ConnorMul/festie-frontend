@@ -19,6 +19,12 @@
     transition: all .7s ease-in;
 }
 
+@media (max-width: 500px){ 
+    div.top{
+        width: auto;
+        max-width: none;
+    }}
+
 .login-btn {
     border: none;
     opacity: 100%;
