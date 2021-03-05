@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './styles/Signup.css'
 
@@ -11,6 +11,23 @@ function Signup({ setCurrentUser }) {
     })
 
     const history = useHistory()
+
+    const [token, setToken] = useState(null)
+
+    useEffect(() => {
+        if (token) {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/autologin`, {
+                method: "GET",
+                headers: {
+                  "Authorization": `Bearer ${token}`
+                }
+              })
+              .then(r => r.json())
+              .then(user => {
+                setCurrentUser(user)
+              })
+        }
+    }, [token])
 
     function handleSignup(e) {
         e.preventDefault()
@@ -28,7 +45,7 @@ function Signup({ setCurrentUser }) {
         })
         .then(r => r.json())
         .then(data => {
-            setCurrentUser(data.user)
+            setToken(data.token)
             localStorage.setItem("token", data.token)
             history.push("/festivals")
         })
