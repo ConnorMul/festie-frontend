@@ -20,7 +20,6 @@ function Trending({ currentUser, favorites, setFavorites, trending, setTrending,
         return <TrendingFestivalCard key={festival.id} festival={festival} currentUser={currentUser} favorite={favorite} favorites={favorites} setFavorites={setFavorites} setFavoritesLength={setFavoritesLength}/>
     })
 
-    console.log(sortedFestivals)
     return (
         <div className="trending-container">
             <h1 className="trending-title">Talk about a killer set!</h1>

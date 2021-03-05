@@ -18,7 +18,6 @@ function EditProfileForm({ currentUser, setCurrentUser, editProfileFormData, set
         })
         .then(r => r.json())
         .then(newUserObj => {
-            console.log(newUserObj)
             setCurrentUser(newUserObj)
             history.push('/profile')
         })
